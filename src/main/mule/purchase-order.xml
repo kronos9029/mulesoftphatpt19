@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="post:\purchaseOrders:application\json:phatpt19-test-config" doc:id="91e81aef-107e-4d11-86d0-027cbdef6ead" >
+		<logger level="INFO" doc:name="Logger" doc:id="2b0d1641-28bd-4ebe-af90-705bb55636e8" />
+		<ee:transform doc:name="Transform Message" doc:id="cbcb1635-652f-4035-a327-bb3629799ecf" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "orderNo": payload.orderNo,
+  "orderDate": payload.createdDate,
+  "title": payload.title,
+  "description": payload.description,
+  "createdByDate": payload.createdDate,
+  "createdBy": payload.createdBy,
+  "detail": {
+    "orderNo": payload.orderNo,
+    "productCode": payload.productCode,
+    "quantity": payload.quantity,
+    "purchasePrice": payload.purchasePrice,
+    "tax": 0
+  }
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<http:request method="POST" doc:name="Request" doc:id="7503220c-d5d0-44c0-85e9-3c2d904dff99" config-ref="HTTP_Request_configuration" path="/PurchaseOrder"/>
+		<ee:transform doc:name="Transform Message" doc:id="43e01484-cdb3-4bb9-8ff1-10602ffab58f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  msg: payload.message
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="b85d52cb-843f-4cd2-9be7-875c13e25eec" />
+	</flow>
+</mule>

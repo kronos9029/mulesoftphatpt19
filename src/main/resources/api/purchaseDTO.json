@@ -1,0 +1,15 @@
+{
+  "orderNo": "string",
+  "orderDate": "2024-09-19T02:35:47.917Z",
+  "title": "string",
+  "description": "string",
+  "createdByDate": "2024-09-19T02:35:47.917Z",
+  "createdBy": "string",
+  "detail": {
+    "orderNo": "string",
+    "productCode": "string",
+    "quantity": 0,
+    "purchasePrice": 0,
+    "tax": 0
+  }
+}

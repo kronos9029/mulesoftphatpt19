@@ -1,0 +1,87 @@
+#%RAML 1.0
+title: PhatPT19-Test
+
+/purchaseOrders:
+  post:
+    description: This resource used to create Purchase Orders
+    body:
+      application/json:
+        description: Object used to insert data into PurchaseOrders table 
+        type: object
+        properties:
+          orderNo: 
+            type: string
+            required: true
+            example: "PO0001"
+          orderDate:
+            type: string
+            example: "2/Jan/2024"
+          title:
+            type: string
+            example: "Purchase new soft drink"
+          description:
+            type: string
+            example: "test"  
+          createdDate:
+            type: string
+            example: "2/Jan/2024"  
+          createdBy:
+            type: string
+            example: "PhatPT19"
+          productCode:
+            type: string
+            example: "A0001"
+          purchasePrice:
+            type: number
+            example: 123
+          quantity:
+            type: number
+            example: 123
+        example:
+          {
+            "orderNo": "OD0001",
+            "orderDate": "2/Jan/2024",
+            "title": "Purchase soft drink",
+            "description": "test",
+            "createdDate": "2/Jan/2024",
+            "createdBy": "PhatPT19",
+            "productCode": "A0001",
+            "purchasePrice": 1200,
+            "quantity": 1
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: "Create Success"
+            example: 
+              {
+                "success": true,
+                "message": "Products retrieved successfully."
+              }
+      500:
+        body:
+          application/json:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              message:
+                type: string
+                example: "Create Success"
+            example: 
+              {
+                "success": true,
+                "message": "Products retrieved successfully."
+              }
+
+
+ 
